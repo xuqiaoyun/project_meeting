@@ -6,30 +6,29 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.etc.entity.Employee;
-
-import com.etc.service.IEmployeeaService;
-
+import com.etc.entity.User;
+import com.etc.service.IUserService;
 import com.etc.util.PageData;
 
 public class test_junit {
 
-		IEmployeeaService ies = null;
-		
+		IUserService bs = null;
+
 		@Before
 		public void before() {
 			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 					"applicationContext.xml");
-			ies = (IEmployeeaService) context.getBean("empService");
+			bs = (IUserService) context.getBean("userservice");
 		}
 
- 
 		@Test
 		public void test() {
-			
-			Employee record = new Employee("´ó¶£µ±","123456" , "134751", "1010@qq.com", 1, 1);
-			int n=ies.insert(record);
-			System.out.println(n);
+			PageData pd = bs.selectUserByPage(1, 5, "m");
+			List<User> list = pd.getData();
+			for (User user : list) {
+				
+				System.out.println(user);
+			}
 		}
 
 		public static void main(String[] args) {
