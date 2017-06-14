@@ -1,9 +1,9 @@
-package com.etc.dao;
+package com.etc.service;
 
 import com.etc.entity.Employee;
 
-public interface EmployeeMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface IEmployeeaService {
+	int deleteByPrimaryKey(Integer id);
 
     int insert(Employee record);
 

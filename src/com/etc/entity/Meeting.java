@@ -7,11 +7,15 @@ public class Meeting {
 
     private String name;
 
+    private String introduce;
+
     private String content;
+
+    private Integer commentid;
 
     private Integer type;
 
-    private String meetingroom;
+    private Integer meetingroom;
 
     private Date starttime;
 
@@ -35,6 +39,8 @@ public class Meeting {
 
     private String opener;
 
+    private Integer applicationid;
+
     public Integer getId() {
         return id;
     }
@@ -51,12 +57,28 @@ public class Meeting {
         this.name = name == null ? null : name.trim();
     }
 
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce == null ? null : introduce.trim();
+    }
+
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public Integer getCommentid() {
+        return commentid;
+    }
+
+    public void setCommentid(Integer commentid) {
+        this.commentid = commentid;
     }
 
     public Integer getType() {
@@ -67,12 +89,12 @@ public class Meeting {
         this.type = type;
     }
 
-    public String getMeetingroom() {
+    public Integer getMeetingroom() {
         return meetingroom;
     }
 
-    public void setMeetingroom(String meetingroom) {
-        this.meetingroom = meetingroom == null ? null : meetingroom.trim();
+    public void setMeetingroom(Integer meetingroom) {
+        this.meetingroom = meetingroom;
     }
 
     public Date getStarttime() {
@@ -161,5 +183,13 @@ public class Meeting {
 
     public void setOpener(String opener) {
         this.opener = opener == null ? null : opener.trim();
+    }
+
+    public Integer getApplicationid() {
+        return applicationid;
+    }
+
+    public void setApplicationid(Integer applicationid) {
+        this.applicationid = applicationid;
     }
 }

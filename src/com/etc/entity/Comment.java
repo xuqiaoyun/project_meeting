@@ -1,11 +1,9 @@
 package com.etc.entity;
 
-public class Roomtype {
+public class Comment {
     private Integer id;
 
     private String name;
-
-    private String remarks;
 
     public Integer getId() {
         return id;
@@ -21,13 +19,5 @@ public class Roomtype {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks == null ? null : remarks.trim();
     }
 }
