@@ -1,7 +1,10 @@
-package com.etc.dao;
+package com.etc.mapper;
+
+import org.springframework.stereotype.Repository;
 
 import com.etc.entity.Employee;
 
+@Repository("empDao")
 public interface EmployeeMapper {
     int deleteByPrimaryKey(Integer id);
 

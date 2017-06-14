@@ -41,7 +41,38 @@ public class Meeting {
 
     private Integer applicationid;
 
-    public Integer getId() {
+    public Meeting() {
+		// TODO Auto-generated constructor stub
+	}
+    
+    public Meeting(String name, String introduce, String content,
+			Integer commentid, Integer type, Integer meetingroom,
+			Date starttime, Date endtime, Integer holder, String recorder,
+			String joiner, Integer number, String check, String checkmess,
+			String lerader, String medias, String opener, Integer applicationid) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.introduce = introduce;
+		this.content = content;
+		this.commentid = commentid;
+		this.type = type;
+		this.meetingroom = meetingroom;
+		this.starttime = starttime;
+		this.endtime = endtime;
+		this.holder = holder;
+		this.recorder = recorder;
+		this.joiner = joiner;
+		this.number = number;
+		this.check = check;
+		this.checkmess = checkmess;
+		this.lerader = lerader;
+		this.medias = medias;
+		this.opener = opener;
+		this.applicationid = applicationid;
+	}
+
+	public Integer getId() {
         return id;
     }
 

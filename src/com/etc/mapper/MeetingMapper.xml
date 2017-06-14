@@ -22,29 +22,33 @@
     <result column="opener" jdbcType="VARCHAR" property="opener" />
     <result column="applicationId" jdbcType="INTEGER" property="applicationid" />
   </resultMap>
+  
   <sql id="Base_Column_List">
     id, name, introduce, content, commentId, type, meetingRoom, startTime, endTime, holder, 
     recorder, joiner, number, check, checkmess, lerader, medias, opener, applicationId
   </sql>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from meeting
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from meeting
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.etc.entity.Meeting">
-    insert into meeting (id, name, introduce, 
+    insert into meeting (name, introduce, 
       content, commentId, type, 
       meetingRoom, startTime, endTime, 
       holder, recorder, joiner, 
       number, check, checkmess, 
       lerader, medias, opener, 
       applicationId)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{commentid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
       #{meetingroom,jdbcType=INTEGER}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
       #{holder,jdbcType=INTEGER}, #{recorder,jdbcType=VARCHAR}, #{joiner,jdbcType=VARCHAR}, 
@@ -52,6 +56,7 @@
       #{lerader,jdbcType=VARCHAR}, #{medias,jdbcType=VARCHAR}, #{opener,jdbcType=VARCHAR}, 
       #{applicationid,jdbcType=INTEGER})
   </insert>
+  
   <insert id="insertSelective" parameterType="com.etc.entity.Meeting">
     insert into meeting
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -173,6 +178,7 @@
       </if>
     </trim>
   </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.etc.entity.Meeting">
     update meeting
     <set>
@@ -233,6 +239,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.etc.entity.Meeting">
     update meeting
     set name = #{name,jdbcType=VARCHAR},
@@ -255,4 +262,18 @@
       applicationId = #{applicationid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByPage" parameterType="com.etc.util.PageBean"
+		resultType="com.etc.entity.Meeting">
+		select * from meeting where name like
+		CONCAT(CONCAT('%', #{str}),'%')
+		limit #{page},#{rows}
+	</select>
+
+	<select id="selectAccount" parameterType="com.etc.util.PageBean"
+		resultType="java.lang.Integer">
+		select count(*) from meeting where name like
+		CONCAT(CONCAT('%',#{str}),'%') ;
+	</select>
+  
 </mapper>

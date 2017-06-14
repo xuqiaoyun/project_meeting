@@ -1,9 +1,9 @@
-package com.etc.dao;
+package com.etc.service;
 
 import com.etc.entity.Meeting;
 
-public interface MeetingMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface IMeetingService {
+	int deleteByPrimaryKey(Integer id);
 
     int insert(Meeting record);
 

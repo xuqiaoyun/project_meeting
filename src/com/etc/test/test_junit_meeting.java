@@ -7,25 +7,25 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.etc.entity.Employee;
-
+import com.etc.entity.Meeting;
 import com.etc.service.IEmployeeaService;
+import com.etc.service.IMeetingService;
 
-public class test_junit {
+public class test_junit_meeting {
 
-	IEmployeeaService ies = null;
+	IMeetingService ies = null;
 
 	@Before
 	public void before() {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"applicationContext.xml");
-		ies = (IEmployeeaService) context.getBean("empService");
+		ies = (IMeetingService) context.getBean("meetingService");
 	}
 
 	@Test
 	public void test() {
 
-		Employee record = new Employee("´ó¶£µ±", "123456", "134751",
-				"1010@qq.com", 1, 1);
+		Meeting record = new Meeting();
 		int n = ies.insert(record);
 		System.out.println(n);
 	}
