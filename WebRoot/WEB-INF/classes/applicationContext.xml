@@ -40,14 +40,14 @@
 		<!-- ① 配置和数据源有关 -->
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- ②其他的属性 和映射文件有关的配置信息 -->
-		<property name="mapperLocations" value="classpath:com/etc/dao/*.xml">
+		<property name="mapperLocations" value="classpath:com/etc/mapper/*.xml">
 		</property>
 	</bean>
 
 	<!-- 配置扫描器 MapperScannerConfigurer 需要用到mybatis-spring.jar -->
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.etc.dao"></property>
+		<property name="basePackage" value="com.etc.mapper"></property>
 		<!-- 注意这里的是value 不是ref -->
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
 	</bean>

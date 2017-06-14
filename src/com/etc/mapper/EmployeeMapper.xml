@@ -23,14 +23,16 @@
     delete from employee
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
   <insert id="insert" parameterType="com.etc.entity.Employee">
-    insert into employee (id, name, password, 
+    insert into employee (name, password, 
       tel, email, dept, powerid
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{dept,jdbcType=INTEGER}, #{powerid,jdbcType=INTEGER}
       )
   </insert>
+  
   <insert id="insertSelective" parameterType="com.etc.entity.Employee">
     insert into employee
     <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -1,13 +1,14 @@
-package com.etc.service;
+package com.etc.service.imp;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.etc.dao.EmployeeMapper;
 import com.etc.entity.Employee;
+import com.etc.mapper.EmployeeMapper;
+import com.etc.service.IEmployeeaService;
 
-@Service(value="empService")
+@Service("empService")
 public class EmployeeaService implements IEmployeeaService{
 	
 	@Resource(name="empDao")

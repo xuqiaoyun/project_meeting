@@ -1,4 +1,4 @@
-package com.etc.dao;
+package com.etc.mapper;
 
 import com.etc.entity.Dept;
 
