@@ -3,6 +3,7 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Meeting {
+	
     private Integer id;
 
     private String name;

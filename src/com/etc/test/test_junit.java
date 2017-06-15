@@ -6,26 +6,27 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.etc.entity.User;
-import com.etc.service.IUserService;
+import com.etc.entity.Meeting;
+import com.etc.service.IMeetingService;
 import com.etc.util.PageData;
+
 
 public class test_junit {
 
-		IUserService bs = null;
+		IMeetingService bs = null;
 
 		@Before
 		public void before() {
 			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 					"applicationContext.xml");
-			bs = (IUserService) context.getBean("userservice");
+			bs = (IMeetingService) context.getBean("meetingService");
 		}
 
 		@Test
 		public void test() {
-			PageData pd = bs.selectUserByPage(1, 5, "m");
-			List<User> list = pd.getData();
-			for (User user : list) {
+			PageData pd = bs.selectByPage(0, 3, "");
+			List<Meeting> list = pd.getData();
+			for (Meeting user : list) {
 				
 				System.out.println(user);
 			}
