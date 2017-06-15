@@ -1,4 +1,4 @@
-package com.etc.test;
+/*package com.etc.test;
 
 import java.util.List;
 
@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.etc.entity.User;
-import com.etc.service.IUserService;
 import com.etc.util.PageData;
 
 public class test_junit {
@@ -39,3 +37,4 @@ public class test_junit {
 	
 	
 }
+*/
