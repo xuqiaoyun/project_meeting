@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.dao.MeetingMapper">
+  <resultMap id="BaseResultMap" type="com.etc.entity.Meeting">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="meetingRoom" jdbcType="VARCHAR" property="meetingroom" />
+    <result column="startTime" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="endTime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="holder" jdbcType="INTEGER" property="holder" />
+    <result column="recorder" jdbcType="VARCHAR" property="recorder" />
+    <result column="joiner" jdbcType="VARCHAR" property="joiner" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="check" jdbcType="VARCHAR" property="check" />
+    <result column="checkmess" jdbcType="VARCHAR" property="checkmess" />
+    <result column="lerader" jdbcType="VARCHAR" property="lerader" />
+    <result column="medias" jdbcType="VARCHAR" property="medias" />
+    <result column="opener" jdbcType="VARCHAR" property="opener" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, content, type, meetingRoom, startTime, endTime, holder, recorder, joiner, 
+    number, check, checkmess, lerader, medias, opener
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from meeting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from meeting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.etc.entity.Meeting">
+    insert into meeting (id, name, content, 
+      type, meetingRoom, startTime, 
+      endTime, holder, recorder, 
+      joiner, number, check, 
+      checkmess, lerader, medias, 
+      opener)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{meetingroom,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{holder,jdbcType=INTEGER}, #{recorder,jdbcType=VARCHAR}, 
+      #{joiner,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{check,jdbcType=VARCHAR}, 
+      #{checkmess,jdbcType=VARCHAR}, #{lerader,jdbcType=VARCHAR}, #{medias,jdbcType=VARCHAR}, 
+      #{opener,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.etc.entity.Meeting">
+    insert into meeting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="meetingroom != null">
+        meetingRoom,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="holder != null">
+        holder,
+      </if>
+      <if test="recorder != null">
+        recorder,
+      </if>
+      <if test="joiner != null">
+        joiner,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="check != null">
+        check,
+      </if>
+      <if test="checkmess != null">
+        checkmess,
+      </if>
+      <if test="lerader != null">
+        lerader,
+      </if>
+      <if test="medias != null">
+        medias,
+      </if>
+      <if test="opener != null">
+        opener,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="meetingroom != null">
+        #{meetingroom,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="holder != null">
+        #{holder,jdbcType=INTEGER},
+      </if>
+      <if test="recorder != null">
+        #{recorder,jdbcType=VARCHAR},
+      </if>
+      <if test="joiner != null">
+        #{joiner,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="check != null">
+        #{check,jdbcType=VARCHAR},
+      </if>
+      <if test="checkmess != null">
+        #{checkmess,jdbcType=VARCHAR},
+      </if>
+      <if test="lerader != null">
+        #{lerader,jdbcType=VARCHAR},
+      </if>
+      <if test="medias != null">
+        #{medias,jdbcType=VARCHAR},
+      </if>
+      <if test="opener != null">
+        #{opener,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.etc.entity.Meeting">
+    update meeting
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="meetingroom != null">
+        meetingRoom = #{meetingroom,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="holder != null">
+        holder = #{holder,jdbcType=INTEGER},
+      </if>
+      <if test="recorder != null">
+        recorder = #{recorder,jdbcType=VARCHAR},
+      </if>
+      <if test="joiner != null">
+        joiner = #{joiner,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="check != null">
+        check = #{check,jdbcType=VARCHAR},
+      </if>
+      <if test="checkmess != null">
+        checkmess = #{checkmess,jdbcType=VARCHAR},
+      </if>
+      <if test="lerader != null">
+        lerader = #{lerader,jdbcType=VARCHAR},
+      </if>
+      <if test="medias != null">
+        medias = #{medias,jdbcType=VARCHAR},
+      </if>
+      <if test="opener != null">
+        opener = #{opener,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.etc.entity.Meeting">
+    update meeting
+    set name = #{name,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      meetingRoom = #{meetingroom,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      holder = #{holder,jdbcType=INTEGER},
+      recorder = #{recorder,jdbcType=VARCHAR},
+      joiner = #{joiner,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      check = #{check,jdbcType=VARCHAR},
+      checkmess = #{checkmess,jdbcType=VARCHAR},
+      lerader = #{lerader,jdbcType=VARCHAR},
+      medias = #{medias,jdbcType=VARCHAR},
+      opener = #{opener,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

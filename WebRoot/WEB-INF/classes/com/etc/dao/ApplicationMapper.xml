@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.dao.ApplicationMapper">
+  <resultMap id="BaseResultMap" type="com.etc.entity.Application">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="micro" jdbcType="INTEGER" property="micro" />
+    <result column="projector" jdbcType="INTEGER" property="projector" />
+    <result column="carWord" jdbcType="VARCHAR" property="carword" />
+    <result column="banner" jdbcType="VARCHAR" property="banner" />
+    <result column="tableSign" jdbcType="VARCHAR" property="tablesign" />
+    <result column="tea" jdbcType="INTEGER" property="tea" />
+    <result column="signTime" jdbcType="TIMESTAMP" property="signtime" />
+    <result column="signLocation" jdbcType="VARCHAR" property="signlocation" />
+    <result column="dinnerType" jdbcType="INTEGER" property="dinnertype" />
+    <result column="dinneNum" jdbcType="INTEGER" property="dinnenum" />
+    <result column="dinnerRemarks" jdbcType="VARCHAR" property="dinnerremarks" />
+    <result column="roomType" jdbcType="INTEGER" property="roomtype" />
+    <result column="roomNum" jdbcType="INTEGER" property="roomnum" />
+    <result column="roomRemarks" jdbcType="VARCHAR" property="roomremarks" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, micro, projector, carWord, banner, tableSign, tea, signTime, signLocation, dinnerType, 
+    dinneNum, dinnerRemarks, roomType, roomNum, roomRemarks, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from application
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from application
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.etc.entity.Application">
+    insert into application (id, micro, projector, 
+      carWord, banner, tableSign, 
+      tea, signTime, signLocation, 
+      dinnerType, dinneNum, dinnerRemarks, 
+      roomType, roomNum, roomRemarks, 
+      remarks)
+    values (#{id,jdbcType=INTEGER}, #{micro,jdbcType=INTEGER}, #{projector,jdbcType=INTEGER}, 
+      #{carword,jdbcType=VARCHAR}, #{banner,jdbcType=VARCHAR}, #{tablesign,jdbcType=VARCHAR}, 
+      #{tea,jdbcType=INTEGER}, #{signtime,jdbcType=TIMESTAMP}, #{signlocation,jdbcType=VARCHAR}, 
+      #{dinnertype,jdbcType=INTEGER}, #{dinnenum,jdbcType=INTEGER}, #{dinnerremarks,jdbcType=VARCHAR}, 
+      #{roomtype,jdbcType=INTEGER}, #{roomnum,jdbcType=INTEGER}, #{roomremarks,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.etc.entity.Application">
+    insert into application
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="micro != null">
+        micro,
+      </if>
+      <if test="projector != null">
+        projector,
+      </if>
+      <if test="carword != null">
+        carWord,
+      </if>
+      <if test="banner != null">
+        banner,
+      </if>
+      <if test="tablesign != null">
+        tableSign,
+      </if>
+      <if test="tea != null">
+        tea,
+      </if>
+      <if test="signtime != null">
+        signTime,
+      </if>
+      <if test="signlocation != null">
+        signLocation,
+      </if>
+      <if test="dinnertype != null">
+        dinnerType,
+      </if>
+      <if test="dinnenum != null">
+        dinneNum,
+      </if>
+      <if test="dinnerremarks != null">
+        dinnerRemarks,
+      </if>
+      <if test="roomtype != null">
+        roomType,
+      </if>
+      <if test="roomnum != null">
+        roomNum,
+      </if>
+      <if test="roomremarks != null">
+        roomRemarks,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="micro != null">
+        #{micro,jdbcType=INTEGER},
+      </if>
+      <if test="projector != null">
+        #{projector,jdbcType=INTEGER},
+      </if>
+      <if test="carword != null">
+        #{carword,jdbcType=VARCHAR},
+      </if>
+      <if test="banner != null">
+        #{banner,jdbcType=VARCHAR},
+      </if>
+      <if test="tablesign != null">
+        #{tablesign,jdbcType=VARCHAR},
+      </if>
+      <if test="tea != null">
+        #{tea,jdbcType=INTEGER},
+      </if>
+      <if test="signtime != null">
+        #{signtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signlocation != null">
+        #{signlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="dinnertype != null">
+        #{dinnertype,jdbcType=INTEGER},
+      </if>
+      <if test="dinnenum != null">
+        #{dinnenum,jdbcType=INTEGER},
+      </if>
+      <if test="dinnerremarks != null">
+        #{dinnerremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="roomtype != null">
+        #{roomtype,jdbcType=INTEGER},
+      </if>
+      <if test="roomnum != null">
+        #{roomnum,jdbcType=INTEGER},
+      </if>
+      <if test="roomremarks != null">
+        #{roomremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.etc.entity.Application">
+    update application
+    <set>
+      <if test="micro != null">
+        micro = #{micro,jdbcType=INTEGER},
+      </if>
+      <if test="projector != null">
+        projector = #{projector,jdbcType=INTEGER},
+      </if>
+      <if test="carword != null">
+        carWord = #{carword,jdbcType=VARCHAR},
+      </if>
+      <if test="banner != null">
+        banner = #{banner,jdbcType=VARCHAR},
+      </if>
+      <if test="tablesign != null">
+        tableSign = #{tablesign,jdbcType=VARCHAR},
+      </if>
+      <if test="tea != null">
+        tea = #{tea,jdbcType=INTEGER},
+      </if>
+      <if test="signtime != null">
+        signTime = #{signtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signlocation != null">
+        signLocation = #{signlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="dinnertype != null">
+        dinnerType = #{dinnertype,jdbcType=INTEGER},
+      </if>
+      <if test="dinnenum != null">
+        dinneNum = #{dinnenum,jdbcType=INTEGER},
+      </if>
+      <if test="dinnerremarks != null">
+        dinnerRemarks = #{dinnerremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="roomtype != null">
+        roomType = #{roomtype,jdbcType=INTEGER},
+      </if>
+      <if test="roomnum != null">
+        roomNum = #{roomnum,jdbcType=INTEGER},
+      </if>
+      <if test="roomremarks != null">
+        roomRemarks = #{roomremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.etc.entity.Application">
+    update application
+    set micro = #{micro,jdbcType=INTEGER},
+      projector = #{projector,jdbcType=INTEGER},
+      carWord = #{carword,jdbcType=VARCHAR},
+      banner = #{banner,jdbcType=VARCHAR},
+      tableSign = #{tablesign,jdbcType=VARCHAR},
+      tea = #{tea,jdbcType=INTEGER},
+      signTime = #{signtime,jdbcType=TIMESTAMP},
+      signLocation = #{signlocation,jdbcType=VARCHAR},
+      dinnerType = #{dinnertype,jdbcType=INTEGER},
+      dinneNum = #{dinnenum,jdbcType=INTEGER},
+      dinnerRemarks = #{dinnerremarks,jdbcType=VARCHAR},
+      roomType = #{roomtype,jdbcType=INTEGER},
+      roomNum = #{roomnum,jdbcType=INTEGER},
+      roomRemarks = #{roomremarks,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

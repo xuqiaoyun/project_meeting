@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.dao.MeetingroomMapper">
+  <resultMap id="BaseResultMap" type="com.etc.entity.Meetingroom">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="maxNum" jdbcType="INTEGER" property="maxnum" />
+    <result column="manager" jdbcType="VARCHAR" property="manager" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+    <result column="blackboard" jdbcType="VARCHAR" property="blackboard" />
+    <result column="media" jdbcType="VARCHAR" property="media" />
+    <result column="nowstate" jdbcType="INTEGER" property="nowstate" />
+    <result column="usefulstate" jdbcType="INTEGER" property="usefulstate" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, location, maxNum, manager, tel, introduce, blackboard, media, nowstate, 
+    usefulstate, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from meetingroom
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from meetingroom
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.etc.entity.Meetingroom">
+    insert into meetingroom (id, name, location, 
+      maxNum, manager, tel, 
+      introduce, blackboard, media, 
+      nowstate, usefulstate, remarks
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{maxnum,jdbcType=INTEGER}, #{manager,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{blackboard,jdbcType=VARCHAR}, #{media,jdbcType=VARCHAR}, 
+      #{nowstate,jdbcType=INTEGER}, #{usefulstate,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.etc.entity.Meetingroom">
+    insert into meetingroom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="maxnum != null">
+        maxNum,
+      </if>
+      <if test="manager != null">
+        manager,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="introduce != null">
+        introduce,
+      </if>
+      <if test="blackboard != null">
+        blackboard,
+      </if>
+      <if test="media != null">
+        media,
+      </if>
+      <if test="nowstate != null">
+        nowstate,
+      </if>
+      <if test="usefulstate != null">
+        usefulstate,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="maxnum != null">
+        #{maxnum,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null">
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="blackboard != null">
+        #{blackboard,jdbcType=VARCHAR},
+      </if>
+      <if test="media != null">
+        #{media,jdbcType=VARCHAR},
+      </if>
+      <if test="nowstate != null">
+        #{nowstate,jdbcType=INTEGER},
+      </if>
+      <if test="usefulstate != null">
+        #{usefulstate,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.etc.entity.Meetingroom">
+    update meetingroom
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="maxnum != null">
+        maxNum = #{maxnum,jdbcType=INTEGER},
+      </if>
+      <if test="manager != null">
+        manager = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="blackboard != null">
+        blackboard = #{blackboard,jdbcType=VARCHAR},
+      </if>
+      <if test="media != null">
+        media = #{media,jdbcType=VARCHAR},
+      </if>
+      <if test="nowstate != null">
+        nowstate = #{nowstate,jdbcType=INTEGER},
+      </if>
+      <if test="usefulstate != null">
+        usefulstate = #{usefulstate,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.etc.entity.Meetingroom">
+    update meetingroom
+    set name = #{name,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      maxNum = #{maxnum,jdbcType=INTEGER},
+      manager = #{manager,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      blackboard = #{blackboard,jdbcType=VARCHAR},
+      media = #{media,jdbcType=VARCHAR},
+      nowstate = #{nowstate,jdbcType=INTEGER},
+      usefulstate = #{usefulstate,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
