@@ -7,11 +7,11 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="dept" jdbcType="INTEGER" property="dept" />
+    <result column="deptid" jdbcType="INTEGER" property="deptid" />
     <result column="powerid" jdbcType="INTEGER" property="powerid" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, password, tel, email, dept, powerid
+    id, name, password, tel, email, deptid, powerid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,11 +25,11 @@
   </delete>
   <insert id="insert" parameterType="com.etc.entity.Employee">
     insert into employee (id, name, password, 
-      tel, email, dept, powerid
-      )
+      tel, email, deptid, 
+      powerid)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{dept,jdbcType=INTEGER}, #{powerid,jdbcType=INTEGER}
-      )
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{deptid,jdbcType=INTEGER}, 
+      #{powerid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.etc.entity.Employee">
     insert into employee
@@ -49,8 +49,8 @@
       <if test="email != null">
         email,
       </if>
-      <if test="dept != null">
-        dept,
+      <if test="deptid != null">
+        deptid,
       </if>
       <if test="powerid != null">
         powerid,
@@ -72,8 +72,8 @@
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="dept != null">
-        #{dept,jdbcType=INTEGER},
+      <if test="deptid != null">
+        #{deptid,jdbcType=INTEGER},
       </if>
       <if test="powerid != null">
         #{powerid,jdbcType=INTEGER},
@@ -95,8 +95,8 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="dept != null">
-        dept = #{dept,jdbcType=INTEGER},
+      <if test="deptid != null">
+        deptid = #{deptid,jdbcType=INTEGER},
       </if>
       <if test="powerid != null">
         powerid = #{powerid,jdbcType=INTEGER},
@@ -110,7 +110,7 @@
       password = #{password,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      dept = #{dept,jdbcType=INTEGER},
+      deptid = #{deptid,jdbcType=INTEGER},
       powerid = #{powerid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -7,6 +7,8 @@ public class Meeting {
 
     private String name;
 
+    private String introduce;
+
     private String content;
 
     private Integer type;
@@ -35,6 +37,8 @@ public class Meeting {
 
     private String opener;
 
+    private Integer applicationid;
+
     public Integer getId() {
         return id;
     }
@@ -49,6 +53,14 @@ public class Meeting {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce == null ? null : introduce.trim();
     }
 
     public String getContent() {
@@ -161,5 +173,13 @@ public class Meeting {
 
     public void setOpener(String opener) {
         this.opener = opener == null ? null : opener.trim();
+    }
+
+    public Integer getApplicationid() {
+        return applicationid;
+    }
+
+    public void setApplicationid(Integer applicationid) {
+        this.applicationid = applicationid;
     }
 }

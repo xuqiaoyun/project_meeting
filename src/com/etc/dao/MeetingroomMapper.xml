@@ -11,13 +11,13 @@
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="blackboard" jdbcType="VARCHAR" property="blackboard" />
     <result column="media" jdbcType="VARCHAR" property="media" />
-    <result column="nowstate" jdbcType="INTEGER" property="nowstate" />
-    <result column="usefulstate" jdbcType="INTEGER" property="usefulstate" />
+    <result column="nowState" jdbcType="INTEGER" property="nowstate" />
+    <result column="usefulState" jdbcType="INTEGER" property="usefulstate" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, location, maxNum, manager, tel, introduce, blackboard, media, nowstate, 
-    usefulstate, remarks
+    id, name, location, maxNum, manager, tel, introduce, blackboard, media, nowState, 
+    usefulState, remarks
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -33,7 +33,7 @@
     insert into meetingroom (id, name, location, 
       maxNum, manager, tel, 
       introduce, blackboard, media, 
-      nowstate, usefulstate, remarks
+      nowState, usefulState, remarks
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
       #{maxnum,jdbcType=INTEGER}, #{manager,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
@@ -72,10 +72,10 @@
         media,
       </if>
       <if test="nowstate != null">
-        nowstate,
+        nowState,
       </if>
       <if test="usefulstate != null">
-        usefulstate,
+        usefulState,
       </if>
       <if test="remarks != null">
         remarks,
@@ -148,10 +148,10 @@
         media = #{media,jdbcType=VARCHAR},
       </if>
       <if test="nowstate != null">
-        nowstate = #{nowstate,jdbcType=INTEGER},
+        nowState = #{nowstate,jdbcType=INTEGER},
       </if>
       <if test="usefulstate != null">
-        usefulstate = #{usefulstate,jdbcType=INTEGER},
+        usefulState = #{usefulstate,jdbcType=INTEGER},
       </if>
       <if test="remarks != null">
         remarks = #{remarks,jdbcType=VARCHAR},
@@ -169,8 +169,8 @@
       introduce = #{introduce,jdbcType=VARCHAR},
       blackboard = #{blackboard,jdbcType=VARCHAR},
       media = #{media,jdbcType=VARCHAR},
-      nowstate = #{nowstate,jdbcType=INTEGER},
-      usefulstate = #{usefulstate,jdbcType=INTEGER},
+      nowState = #{nowstate,jdbcType=INTEGER},
+      usefulState = #{usefulstate,jdbcType=INTEGER},
       remarks = #{remarks,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

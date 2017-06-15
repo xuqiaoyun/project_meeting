@@ -11,7 +11,7 @@ public class Employee {
 
     private String email;
 
-    private Integer dept;
+    private Integer deptid;
 
     private Integer powerid;
 
@@ -55,12 +55,12 @@ public class Employee {
         this.email = email == null ? null : email.trim();
     }
 
-    public Integer getDept() {
-        return dept;
+    public Integer getDeptid() {
+        return deptid;
     }
 
-    public void setDept(Integer dept) {
-        this.dept = dept;
+    public void setDeptid(Integer deptid) {
+        this.deptid = deptid;
     }
 
     public Integer getPowerid() {

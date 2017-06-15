@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.etc.entity.Meeting">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="meetingRoom" jdbcType="VARCHAR" property="meetingroom" />
@@ -18,10 +19,11 @@
     <result column="lerader" jdbcType="VARCHAR" property="lerader" />
     <result column="medias" jdbcType="VARCHAR" property="medias" />
     <result column="opener" jdbcType="VARCHAR" property="opener" />
+    <result column="applicationId" jdbcType="INTEGER" property="applicationid" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, content, type, meetingRoom, startTime, endTime, holder, recorder, joiner, 
-    number, check, checkmess, lerader, medias, opener
+    id, name, introduce, content, type, meetingRoom, startTime, endTime, holder, recorder, 
+    joiner, number, check, checkmess, lerader, medias, opener, applicationId
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -34,18 +36,20 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.etc.entity.Meeting">
-    insert into meeting (id, name, content, 
-      type, meetingRoom, startTime, 
-      endTime, holder, recorder, 
-      joiner, number, check, 
-      checkmess, lerader, medias, 
-      opener)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{meetingroom,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
-      #{endtime,jdbcType=TIMESTAMP}, #{holder,jdbcType=INTEGER}, #{recorder,jdbcType=VARCHAR}, 
-      #{joiner,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{check,jdbcType=VARCHAR}, 
-      #{checkmess,jdbcType=VARCHAR}, #{lerader,jdbcType=VARCHAR}, #{medias,jdbcType=VARCHAR}, 
-      #{opener,jdbcType=VARCHAR})
+    insert into meeting (id, name, introduce, 
+      content, type, meetingRoom, 
+      startTime, endTime, holder, 
+      recorder, joiner, number, 
+      check, checkmess, lerader, 
+      medias, opener, applicationId
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{meetingroom,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{holder,jdbcType=INTEGER}, 
+      #{recorder,jdbcType=VARCHAR}, #{joiner,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{check,jdbcType=VARCHAR}, #{checkmess,jdbcType=VARCHAR}, #{lerader,jdbcType=VARCHAR}, 
+      #{medias,jdbcType=VARCHAR}, #{opener,jdbcType=VARCHAR}, #{applicationid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.etc.entity.Meeting">
     insert into meeting
@@ -55,6 +59,9 @@
       </if>
       <if test="name != null">
         name,
+      </if>
+      <if test="introduce != null">
+        introduce,
       </if>
       <if test="content != null">
         content,
@@ -98,6 +105,9 @@
       <if test="opener != null">
         opener,
       </if>
+      <if test="applicationid != null">
+        applicationId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -105,6 +115,9 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
@@ -148,6 +161,9 @@
       <if test="opener != null">
         #{opener,jdbcType=VARCHAR},
       </if>
+      <if test="applicationid != null">
+        #{applicationid,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.etc.entity.Meeting">
@@ -155,6 +171,9 @@
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        introduce = #{introduce,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
@@ -198,12 +217,16 @@
       <if test="opener != null">
         opener = #{opener,jdbcType=VARCHAR},
       </if>
+      <if test="applicationid != null">
+        applicationId = #{applicationid,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.etc.entity.Meeting">
     update meeting
     set name = #{name,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       meetingRoom = #{meetingroom,jdbcType=VARCHAR},
@@ -217,7 +240,8 @@
       checkmess = #{checkmess,jdbcType=VARCHAR},
       lerader = #{lerader,jdbcType=VARCHAR},
       medias = #{medias,jdbcType=VARCHAR},
-      opener = #{opener,jdbcType=VARCHAR}
+      opener = #{opener,jdbcType=VARCHAR},
+      applicationId = #{applicationid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
