@@ -282,7 +282,6 @@
 		meeting.meetingRoom = meetingroom.id AND
 		meeting.holder = dept.id
 		LIMIT ${page}, ${rows};
-
 	</select>
 
 </mapper>
