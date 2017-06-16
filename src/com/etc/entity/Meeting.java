@@ -3,6 +3,7 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Meeting {
+	
     private Integer id;
 
     private String name;
@@ -38,8 +39,40 @@ public class Meeting {
     private String opener;
 
     private Integer applicationid;
+    
+    private Dept dept;
+    
+    private Meetingroom mr;
+    
+    
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Meeting [name=" + name + ", introduce=" + introduce
+				+ ", starttime=" + starttime + ", endtime=" + endtime
+				+ ", dept=" + dept + ", mr=" + mr + "]";
+	}
+
+	public Dept getDept() {
+		return dept;
+	}
+
+	public void setDept(Dept dept) {
+		this.dept = dept;
+	}
+
+	public Meetingroom getMr() {
+		return mr;
+	}
+
+	public void setMr(Meetingroom mr) {
+		this.mr = mr;
+	}
+
+	
+
+	public Integer getId() {
         return id;
     }
 
