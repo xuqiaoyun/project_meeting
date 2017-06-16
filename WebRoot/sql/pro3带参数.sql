@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : my-mysql
+Source Server         : hyn
 Source Server Version : 50525
 Source Host           : localhost:3306
 Source Database       : pro3
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2017-06-16 10:02:56
+Date: 2017-06-16 07:36:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,21 +56,17 @@ CREATE TABLE `dept` (
   `name` varchar(255) NOT NULL COMMENT '部门名称',
   `remarks` varchar(255) NOT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dept
 -- ----------------------------
-INSERT INTO `dept` VALUES ('1', 'wseda', 'sad');
-INSERT INTO `dept` VALUES ('2', 'sda', 'sad');
-INSERT INTO `dept` VALUES ('3', 'sadas', 'sdsa');
-INSERT INTO `dept` VALUES ('4', 'dsfswa', 'dsfsd');
-INSERT INTO `dept` VALUES ('5', 'sd', 'sds');
-INSERT INTO `dept` VALUES ('6', 'dsf', 'dsf');
-INSERT INTO `dept` VALUES ('7', '?', '?');
-INSERT INTO `dept` VALUES ('8', '?', '?');
-INSERT INTO `dept` VALUES ('9', '?', '?');
-INSERT INTO `dept` VALUES ('10', '?', '?');
+INSERT INTO `dept` VALUES ('1', '会计部门', 'sad');
+INSERT INTO `dept` VALUES ('2', '技术部门', 'sad');
+INSERT INTO `dept` VALUES ('3', '市场部门', 'sdsa');
+INSERT INTO `dept` VALUES ('4', '后勤部门', 'dsfsd');
+INSERT INTO `dept` VALUES ('5', '秘书部门', 'sds');
+INSERT INTO `dept` VALUES ('6', '策划部门', 'dsf');
 
 -- ----------------------------
 -- Table structure for `dinnertype`
@@ -81,11 +77,15 @@ CREATE TABLE `dinnertype` (
   `name` varchar(255) NOT NULL COMMENT '用餐类型',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dinnertype
 -- ----------------------------
+INSERT INTO `dinnertype` VALUES ('1', '一荤一素', null);
+INSERT INTO `dinnertype` VALUES ('2', '一荤两素', null);
+INSERT INTO `dinnertype` VALUES ('3', '两荤两素', null);
+INSERT INTO `dinnertype` VALUES ('4', '鸡腿套餐', null);
 
 -- ----------------------------
 -- Table structure for `employee`
@@ -120,7 +120,7 @@ CREATE TABLE `meeting` (
   `introduce` varchar(255) NOT NULL COMMENT '会议简述',
   `content` varchar(255) DEFAULT NULL COMMENT '会议内容',
   `type` int(11) NOT NULL COMMENT '会议类型（外键）',
-  `meetingRoom` varchar(255) NOT NULL COMMENT '会议地点',
+  `meetingRoom` int(11) NOT NULL COMMENT '会议地点',
   `startTime` datetime NOT NULL COMMENT '开始时间',
   `endTime` datetime NOT NULL COMMENT '结束时间',
   `holder` int(11) NOT NULL COMMENT '主办部门(外键)',
@@ -132,16 +132,26 @@ CREATE TABLE `meeting` (
   `lerader` varchar(255) NOT NULL DEFAULT '否' COMMENT '领导是否参加',
   `medias` varchar(11) NOT NULL DEFAULT '否' COMMENT '多媒体设备',
   `opener` varchar(255) NOT NULL COMMENT '申请人',
+  `applicationId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_meeting` (`type`),
   KEY `fk_holder` (`holder`),
+  KEY `applicationId` (`applicationId`),
+  KEY `meetingRoom` (`meetingRoom`),
+  CONSTRAINT `meeting_ibfk_2` FOREIGN KEY (`meetingRoom`) REFERENCES `meetingroom` (`id`),
   CONSTRAINT `fk_holder` FOREIGN KEY (`holder`) REFERENCES `dept` (`id`),
-  CONSTRAINT `fk_meeting` FOREIGN KEY (`type`) REFERENCES `meetingtype` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_meeting` FOREIGN KEY (`type`) REFERENCES `meetingtype` (`id`),
+  CONSTRAINT `meeting_ibfk_1` FOREIGN KEY (`applicationId`) REFERENCES `application` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of meeting
 -- ----------------------------
+INSERT INTO `meeting` VALUES ('1', '周日例会', '安排下间断十一', null, '1', '2', '2017-06-19 20:46:02', '2017-06-15 20:46:07', '1', '黄亚楠', '收到货，撒娇的骄傲，萨达，大大，萨达，硕大的', '9', '否', null, '否', '否', '黄雁南', null);
+INSERT INTO `meeting` VALUES ('2', '下次会议', '你猜猜看', null, '2', '3', '2017-06-15 20:47:56', '2017-06-15 20:47:59', '3', '萨克京东卡', '萨达，撒打算，萨达', '3', '是', 'OK', '是', '否', '萨达', null);
+INSERT INTO `meeting` VALUES ('3', '，没看撒娇', '精神抖擞', null, '1', '2', '2017-06-13 20:48:57', '2017-06-28 20:49:00', '2', '看到你发送', '上岛咖啡那是', '8', '是', '好好地', '是', '是', '卡萨丁', null);
+INSERT INTO `meeting` VALUES ('4', 'asjd', 'sakds', 'ksdjf', '2', '4', '2017-06-15 20:49:20', '2017-06-15 20:49:24', '4', 'sdsfs ', 'dsadsad', '2', '否', null, '否', '否', 'sdfs', null);
+INSERT INTO `meeting` VALUES ('5', 'sads', 'dgdf', 'fds', '1', '1', '2017-06-06 20:49:58', '2017-06-15 20:50:02', '2', 'dsfdds', 'dbgfgn', '5', '否', null, '否', '否', 'gmj', null);
 
 -- ----------------------------
 -- Table structure for `meetingroom`
@@ -165,11 +175,15 @@ CREATE TABLE `meetingroom` (
   KEY `fk_usefulstate` (`usefulState`),
   CONSTRAINT `fk_nowstate` FOREIGN KEY (`nowState`) REFERENCES `state` (`id`),
   CONSTRAINT `fk_usefulstate` FOREIGN KEY (`usefulState`) REFERENCES `state` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of meetingroom
 -- ----------------------------
+INSERT INTO `meetingroom` VALUES ('1', '1-101', '中软', '20', '黄雁南', '1893421', '挺好的', '是', '否', '1', '1', 'sdn');
+INSERT INTO `meetingroom` VALUES ('2', '1-102', '中软', '20', '黄雁南', '213123', 'good', '否', '是', '1', '1', '独守空房');
+INSERT INTO `meetingroom` VALUES ('3', '1-103', '中软', '30', '黄雁南', '324329', 'nice', '是', '是', '2', '1', '萨达');
+INSERT INTO `meetingroom` VALUES ('4', '2-101', '中软', '30', '黄雁南', '214210', 'prettygood', '是', '是', '1', '1', '奥斯卡打脸萨');
 
 -- ----------------------------
 -- Table structure for `meetingtype`
@@ -180,35 +194,13 @@ CREATE TABLE `meetingtype` (
   `name` varchar(255) NOT NULL COMMENT '会议类型名称',
   `remarks` varchar(255) NOT NULL COMMENT '说明',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of meetingtype
 -- ----------------------------
-
--- ----------------------------
--- Table structure for `message`
--- ----------------------------
-DROP TABLE IF EXISTS `message`;
-CREATE TABLE `message` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '信息id',
-  `content` varchar(255) DEFAULT NULL COMMENT '信息内容',
-  `meetingId` int(11) DEFAULT '0' COMMENT '会议id',
-  `collectionId` int(11) DEFAULT NULL COMMENT '收信人id',
-  `sendId` int(11) DEFAULT NULL COMMENT '发信人id',
-  `status` int(11) DEFAULT NULL COMMENT '信息状态，1为已读，0为未读',
-  PRIMARY KEY (`id`),
-  KEY `fk_meetingId` (`meetingId`),
-  KEY `fk_collection` (`collectionId`),
-  KEY `fk_send` (`sendId`),
-  CONSTRAINT `fk_send` FOREIGN KEY (`sendId`) REFERENCES `employee` (`id`),
-  CONSTRAINT `fk_collection` FOREIGN KEY (`collectionId`) REFERENCES `employee` (`id`),
-  CONSTRAINT `fk_meetingId` FOREIGN KEY (`meetingId`) REFERENCES `meeting` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of message
--- ----------------------------
+INSERT INTO `meetingtype` VALUES ('1', '内部会议', '需填写会务表');
+INSERT INTO `meetingtype` VALUES ('2', '外部会议', '无需填写会务表');
 
 -- ----------------------------
 -- Table structure for `power`
@@ -219,11 +211,14 @@ CREATE TABLE `power` (
   `name` varchar(255) NOT NULL COMMENT '权限名称',
   `remarks` varchar(255) NOT NULL COMMENT '权限说明',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of power
 -- ----------------------------
+INSERT INTO `power` VALUES ('1', '普通用户', '仅可以查看会议安排');
+INSERT INTO `power` VALUES ('2', '审核者', '审核议题');
+INSERT INTO `power` VALUES ('3', '会议管理员', '会议管理');
 
 -- ----------------------------
 -- Table structure for `roomtype`
@@ -234,11 +229,14 @@ CREATE TABLE `roomtype` (
   `name` varchar(255) NOT NULL COMMENT '房间类型',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of roomtype
 -- ----------------------------
+INSERT INTO `roomtype` VALUES ('1', '单人间', '1');
+INSERT INTO `roomtype` VALUES ('2', '双人间', '2');
+INSERT INTO `roomtype` VALUES ('3', '总统套房', '5');
 
 -- ----------------------------
 -- Table structure for `state`
