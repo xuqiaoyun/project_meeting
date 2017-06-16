@@ -1,7 +1,9 @@
 package com.etc.dao;
 
-import com.etc.entity.Dept;
+import org.springframework.stereotype.Repository;
 
+import com.etc.entity.Dept;
+@Repository(value="deptMapper")
 public interface DeptMapper {
     int deleteByPrimaryKey(Integer id);
 
