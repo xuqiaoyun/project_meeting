@@ -1,7 +1,8 @@
 package com.etc.dao;
 
-import com.etc.entity.Meetingtype;
+import org.springframework.stereotype.Repository;
 
+import com.etc.entity.Meetingtype;
 public interface MeetingtypeMapper {
     int deleteByPrimaryKey(Integer id);
 
