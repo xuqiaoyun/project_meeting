@@ -11,6 +11,8 @@ public class Message {
 
     private Integer sendid;
 
+    private String mlocaltime;
+
     private Integer status;
 
     public Integer getId() {
@@ -51,6 +53,14 @@ public class Message {
 
     public void setSendid(Integer sendid) {
         this.sendid = sendid;
+    }
+
+    public String getMlocaltime() {
+        return mlocaltime;
+    }
+
+    public void setMlocaltime(String mlocaltime) {
+        this.mlocaltime = mlocaltime == null ? null : mlocaltime.trim();
     }
 
     public Integer getStatus() {

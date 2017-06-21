@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.dao.MessageStatusMapper">
+  <resultMap id="BaseResultMap" type="com.etc.entity.MessageStatus">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="readId" jdbcType="VARCHAR" property="readid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, readId
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from messagestatus
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from messagestatus
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.etc.entity.MessageStatus">
+    insert into messagestatus (id, readId)
+    values (#{id,jdbcType=INTEGER}, #{readid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.etc.entity.MessageStatus">
+    insert into messagestatus
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="readid != null">
+        readId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="readid != null">
+        #{readid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.etc.entity.MessageStatus">
+    update messagestatus
+    <set>
+      <if test="readid != null">
+        readId = #{readid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.etc.entity.MessageStatus">
+    update messagestatus
+    set readId = #{readid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectMessageStatus" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from messagestatus group by id 
+  </select>
+</mapper>

@@ -34,8 +34,8 @@
 		<!-- 获取连接最大等待时间 -->
 		<property name="maxWait" value="60000" />
 	</bean>
-
-
+	<!-- 注解方式配置事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- ① 配置和数据源有关 -->
 		<property name="dataSource" ref="dataSource"></property>
@@ -55,7 +55,6 @@
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
-
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
